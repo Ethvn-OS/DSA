@@ -16,6 +16,7 @@ bool isFull(Stacktype* L);
 void pushStack(Stacktype* L, char elem);
 void popStack(Stacktype* L);
 char topStack(Stacktype L);
+void printStack(Stacktype L);
 
 //Function Definitions
 
@@ -36,22 +37,27 @@ bool isFull(Stacktype* L) {
 
 //This function will push (insert) an element into the arrayList if the stack is not yet full
 void pushStack(Stacktype* L, char elem) {
-    bool val = isFull(L);
-    if (val == false) {
+    if (!isFull(L)) {
         L->elem[--L->top] = elem;
     }
 }
 
 //This function will pop (delete) an element at the top of the arrayList
 void popStack(Stacktype* L) {
-    bool val = isEmpty(L);
-    if (val == false) {
+    if (!isEmpty(L)) {
         L->top++;
     }
 }
 
 //This function will return the element at the top of the stack
 char topStack(Stacktype L) {
-    bool val = isEmpty(&L);
-    return (val == false) ? L.elem[L.top] : '\0';
+    return (!isEmpty(&L)) ? L.elem[L.top] : '\0';
+}
+
+//This function will print and display the stack
+void printStack(Stacktype L) {
+    for (; L.top < MAX;) {
+        printf("Data: %c\n", L.elem[L.top]);
+        popStack(&L);
+    }
 }
