@@ -51,9 +51,35 @@ bool isFull(Stacktype* S){
     return (S->top == 0) ? true : false;
 }
 
+//This function prints the stack
 void printStack(Stacktype S) {
     for (; S.top < MAX;) {
         printf("Data: %c\n", top(&S));
         pop(&S);
+    }
+}
+
+//This function inserts an element at the bottom of the stack
+void insertBottom(Stacktype* S, char elem) {
+    Stacktype B;
+    initialize(&B);
+
+    if (!isFull(S)) {
+        char tops;
+        while (!isEmpty(S)) {
+            tops = top(S);
+            pop(S);
+            push(&B, tops);
+        }
+
+        push(S, elem);
+
+        while (!isEmpty(&B)) {
+            tops = top(&B);
+            pop(&B);
+            push(S, tops);
+        }
+    } else {
+        printf("\nThe stack is full.\n");
     }
 }

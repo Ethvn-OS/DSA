@@ -18,5 +18,9 @@ int main() {
     printf("\nData after pop:\n");
     printStack(S);
 
+    printf("\nData after inserting at bottom:\n");
+    insertBottom(&S, 'x');
+    printStack(S);
+
     return 0;
 }
