@@ -16,6 +16,7 @@ char top(Stacktype* S);
 bool isEmpty(Stacktype* S);
 bool isFull(Stacktype* S);
 void printStack(Stacktype S);
+void insertBottom(Stacktype* S, char elem);
 
 // initialize
 void initialize(Stacktype* S){
