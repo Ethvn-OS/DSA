@@ -57,7 +57,7 @@ char topStack(Stacktype L) {
 //This function will print and display the stack
 void printStack(Stacktype L) {
     for (; L.top < MAX;) {
-        printf("Data: %c\n", L.elem[L.top]);
+        printf("Data: %c\n", topStack(L));
         popStack(&L);
     }
 }
