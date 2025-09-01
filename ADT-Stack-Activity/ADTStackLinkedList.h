@@ -18,6 +18,7 @@ void push(Stacktype* L, char elem);
 void pop(Stacktype* L);
 char top(Stacktype* L);
 void printStack(Stacktype L);
+void insertBottom(Stacktype* L, char elem);
 
 //Function Definitions
 
@@ -43,6 +44,8 @@ void push(Stacktype* L, char elem) {
         temp->elem = elem;
         temp->link = *L;
         *L = temp;
+    } else {
+        printf("Memory allocation failed.\n");
     }
 }
 
@@ -52,6 +55,8 @@ void pop(Stacktype* L) {
         Stacktype temp = *L;
         *L = temp->link;
         free(temp);
+    } else {
+        printf("The stack is empty.\n");
     }
 }
 
@@ -67,9 +72,27 @@ void printStack(Stacktype L) {
     }
 }
 
-/*void printStack(Stacktype L) {
-    for (; L != NULL;) {
-        printf("Data: %c\n", L->elem);
-        popStack(&L);
+//This function inserts an element at the bottom of the stack
+void insertBottom(Stacktype* L, char elem) {
+    Stacktype B;
+    initialize(&B);
+
+    if (!isFull(L)) {
+        char tops;
+        while(!isEmpty(L)) {
+            tops = top(L);
+            pop(L);
+            push(&B, tops);
+        }
+
+        push(L, elem);
+
+        while(!isEmpty(&B)) {
+            tops = top(&B);
+            pop(&B);
+            push(L, tops);
+        }
+    } else {
+        printf("\nThe stack is full.\n");
     }
-}*/
+}
