@@ -17,38 +17,38 @@ bool isEmpty(Stacktype* S);
 bool isFull(Stacktype* S);
 void printStack(Stacktype S);
 
-// initialize 
+// initialize
 void initialize(Stacktype* S){
-    S->top = MAX; 
+    S->top = MAX;
 }
 
 // push
 void push(Stacktype* S, char elem){
     if(!isFull(S)){
-        S->elem[--S->top] = elem; 
+        S->elem[--S->top] = elem;
     }
 }
 
 // pop
 void pop(Stacktype* S){
     if(!isEmpty(S)){
-        S->top++; 
+        S->top++;
     }
 }
 
-// top 
+// top
 char top(Stacktype* S){
     return (!isEmpty(S)) ? S->elem[S->top] : '\0'; 
 }
 
-// isEmpty 
+// isEmpty
 bool isEmpty(Stacktype* S){
     return (S->top == MAX) ? true : false; 
 }
 
 // isFull
 bool isFull(Stacktype* S){
-    return (S->top == 0) ? true : false; 
+    return (S->top == 0) ? true : false;
 }
 
 void printStack(Stacktype S) {

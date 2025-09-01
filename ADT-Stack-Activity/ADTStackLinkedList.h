@@ -11,18 +11,18 @@ typedef struct node {
 } *Stacktype;
 
 //Function Prototypes
-void initStack(Stacktype* L);
+void initialize(Stacktype* L);
 bool isEmpty(Stacktype* L);
 bool isFull(Stacktype* L);
-void pushStack(Stacktype* L, char elem);
-void popStack(Stacktype* L);
-char topStack(Stacktype L);
+void push(Stacktype* L, char elem);
+void pop(Stacktype* L);
+char top(Stacktype* L);
 void printStack(Stacktype L);
 
 //Function Definitions
 
 //This function initializes the stack
-void initStack(Stacktype* L) {
+void initialize(Stacktype* L) {
     *L = NULL;
 }
 
@@ -37,7 +37,7 @@ bool isFull(Stacktype* L) {
 }
 
 //This function will push (insert) an element into the linkedList if the stack is not yet full
-void pushStack(Stacktype* L, char elem) {
+void push(Stacktype* L, char elem) {
     Stacktype temp = (Stacktype)malloc(sizeof(struct node));
     if (temp != NULL) {
         temp->elem = elem;
@@ -47,7 +47,7 @@ void pushStack(Stacktype* L, char elem) {
 }
 
 //This function will pop (delete) an element at the top of the linkedList
-void popStack(Stacktype* L) {
+void pop(Stacktype* L) {
     if (!isEmpty(L)){
         Stacktype temp = *L;
         *L = temp->link;
@@ -56,8 +56,8 @@ void popStack(Stacktype* L) {
 }
 
 //This function will return the element at the top of the stack
-char topStack(Stacktype L) {
-    return (!isEmpty(&L)) ? L->elem : '\0';
+char top(Stacktype* L) {
+    return (!isEmpty(L)) ? (*L)->elem : '\0';
 }
 
 //This stack will print and display the stack
