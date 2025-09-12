@@ -17,7 +17,7 @@ bool isFull(Stacktype* L);
 void push(Stacktype* L, char elem);
 void pop(Stacktype* L);
 char top(Stacktype* L);
-void printStack(Stacktype L);
+void printStack(Stacktype* L);
 void insertBottom(Stacktype* L, char elem);
 
 //Function Definitions
@@ -66,9 +66,28 @@ char top(Stacktype* L) {
 }
 
 //This stack will print and display the stack
-void printStack(Stacktype L) {
-    for (; L != NULL; L = L->link) {
-        printf("Data: %c\n", L->elem);
+void printStack(Stacktype* L) {
+    Stacktype B = NULL;
+    Stacktype temp;
+    while (!isEmpty(L)) {
+        temp = (Stacktype)malloc(sizeof(struct node));
+        if (temp != NULL) {
+            temp->elem = top(L);
+            temp->link = B;
+            B = temp;
+        }
+        printf("Data: %c\n", top(&B));
+        pop(L);
+    }
+
+    while(!isEmpty(&B)) {
+        temp = (Stacktype)malloc(sizeof(struct node));
+        if (temp != NULL) {
+            temp->elem = top(&B);
+            temp->link = *L;
+            *L = temp;
+            pop(&B);
+        }
     }
 }
 

@@ -12,16 +12,16 @@ int main() {
     push(&S, 'U');
 
     printf("The initial data in the stack:\n");
-    printStack(S);
+    printStack(&S);
 
     pop(&S);
 
     printf("\nData after pop:\n");
-    printStack(S);
+    printStack(&S);
 
     printf("\nData after inserting at bottom:\n");
     insertBottom(&S, 'x');
-    printStack(S);
+    printStack(&S);
 
     return 0;
 }

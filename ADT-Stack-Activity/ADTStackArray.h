@@ -15,7 +15,7 @@ void pop(Stacktype* S);
 char top(Stacktype* S);
 bool isEmpty(Stacktype* S);
 bool isFull(Stacktype* S);
-void printStack(Stacktype S);
+void printStack(Stacktype* S);
 void insertBottom(Stacktype* S, char elem);
 
 // initialize
@@ -53,10 +53,10 @@ bool isFull(Stacktype* S){
 }
 
 //This function prints the stack
-void printStack(Stacktype S) {
-    for (; S.top < MAX;) {
-        printf("Data: %c\n", top(&S));
-        pop(&S);
+void printStack(Stacktype* S) {
+    for (; S->top < MAX;) {
+        printf("Data: %c\n", top(S));
+        pop(S);
     }
 }
 
