@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 //Data type definitions
 typedef struct node {
@@ -16,6 +17,9 @@ typedef struct {
 void initializeQueue(Queue* A);
 void enqueue(char elem, Queue* A);
 void dequeue(Queue* A);
+bool isEmpty(Queue A);
+bool isFull(Queue A);
+char front(Queue A);
 void printQueue(Queue* A);
 
 //Function definitions
@@ -39,7 +43,7 @@ void enqueue(char elem, Queue* A) {
 }
 
 void dequeue(Queue* A) {
-    if (A->front != NULL) {
+    if (!isEmpty(*A)) {
         Node temp = A->front;
         A->front = temp->link;
         free(temp);
@@ -49,6 +53,34 @@ void dequeue(Queue* A) {
     }
 }
 
+bool isEmpty(Queue A) {
+    return (A.front == NULL) ? true : false;
+}
+
+bool isFull(Queue A) {
+    return false;
+}
+
+char front(Queue A) {
+    return (!isEmpty(A)) ? A.front->elem : '\0';
+}
+
+//print queue for when elements are unique and not unique (flexible)
 void printQueue(Queue* A) {
-    //insert code here
+    Queue B;
+    initializeQueue(&B);
+    if (!isEmpty(*A)) {
+        while(!isEmpty(*A)) {
+            enqueue(A->front->elem, &B);
+            printf("Data: %c\n", B.rear->elem);
+            dequeue(A);
+        }
+
+        while (!isEmpty(B)) {
+            enqueue(B.front->elem, A);
+            dequeue(&B);
+        }
+    } else {
+        printf("The queue is already empty.\n");
+    }
 }
