@@ -70,24 +70,14 @@ void printStack(Stacktype* L) {
     Stacktype B = NULL;
     Stacktype temp;
     while (!isEmpty(L)) {
-        temp = (Stacktype)malloc(sizeof(struct node));
-        if (temp != NULL) {
-            temp->elem = top(L);
-            temp->link = B;
-            B = temp;
-        }
+        push(&B, (*L)->elem);
         printf("Data: %c\n", top(&B));
         pop(L);
     }
 
     while(!isEmpty(&B)) {
-        temp = (Stacktype)malloc(sizeof(struct node));
-        if (temp != NULL) {
-            temp->elem = top(&B);
-            temp->link = *L;
-            *L = temp;
-            pop(&B);
-        }
+        push(L, B->elem);
+        pop(&B);
     }
 }
 
