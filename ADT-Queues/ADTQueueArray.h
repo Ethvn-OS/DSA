@@ -66,24 +66,3 @@ void printQueue(Queue* A) {
         printf("The queue is already empty.\n");
     }
 }
-
-
-
-
-
-
-
-//print queue for when elements are not unique
-//this will require a tweak on the Queue data type (include a count variable)
-//insert code here
-
-//ASK MS ABOUT THIS (I THINK THIS DEFIES QUEUE RULES)
-
-/* void printQueue(Queue* A) {
-    int ndx = A->front;
-    while((A->rear+1) % MAX != A->front) {
-        printf("Data: %c\n", A->elem[A->front]);
-        dequeue(A);
-    }
-    A->front = ndx;
-} */

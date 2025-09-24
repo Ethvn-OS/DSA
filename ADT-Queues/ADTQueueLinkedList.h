@@ -33,10 +33,10 @@ void enqueue(char elem, Queue* A) {
     if (temp != NULL) {
         temp->elem = elem;
         temp->link = NULL;
-        if (A->rear != NULL) {
-            A->rear->link = temp;
-        } else {
+        if (A->rear == NULL) {
             A->front = temp;
+        } else {
+            A->rear->link = temp;
         }
         A->rear = temp;
     }
