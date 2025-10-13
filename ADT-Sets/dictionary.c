@@ -1,4 +1,4 @@
-//Program to get the average search length of all the elements in the dictionary
+//Program to get the average search length of all the elements in the closed hash dictionary
 //Programmer: Ethan Andre O. Dalocanog
 //Date Created: September 25, 2025
 
@@ -6,13 +6,14 @@
 #include <stdlib.h>
 #define MAX 10
 #define EMPTY -2
-#define DELETED -1
+#define DELETED -3
 
 typedef char Dictionary[10];
 
 void initDictionary(Dictionary* D);
 void printDic(Dictionary D);
 int insert(Dictionary* D, char elem, int hash);
+void delete(Dictionary* D, int hash);
 int getSearchLen(int actualLoc, int hash);
 
 int main() {
@@ -55,7 +56,22 @@ int main() {
 
     float ave = (float)sum / (float)8;
 
-    printf("\nAverage Search Length of all 8 Elements: %.2f", ave);
+    printf("\nAverage Search Length of all 8 Elements: %.2f\n\n", ave);
+
+    delete(&D, 3);
+    printDic(D);
+
+    int SL9 = insert(&D, 'Z', 3);
+    printDic(D);
+
+    int SL10 = insert(&D, 'Y', 3);
+    printDic(D);
+
+    int SL11 = insert(&D, 'J', 7);
+    printDic(D);
+
+    int SL12 = insert(&D, 'K', 7);
+    printDic(D);
 
     return 0;
 }
@@ -89,11 +105,19 @@ int insert(Dictionary* D, char elem, int hash) {
             for (ctr = hash; ndx < MAX && (*D)[ctr] != DELETED; ctr = (ctr+1) % MAX, ndx++) {}
             if (ndx < MAX) {
                 (*D)[ctr] = elem;
+            } else {
+                printf("The dictionary is full.\n");
             }
         }
     }
     int searchLen = getSearchLen(ctr, hash);
     return searchLen;
+}
+
+void delete(Dictionary* D, int hash) {
+    if ((*D)[hash] != EMPTY) {
+        (*D)[hash] = DELETED;
+    }
 }
 
 int getSearchLen(int actualLoc, int hash) {
