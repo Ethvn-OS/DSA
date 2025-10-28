@@ -41,6 +41,7 @@ SET* Intersection(SET A, SET B) {
             (*C)[ctr] = A[ctr] && B[ctr];
         }
     }
+    return C;
 }
 
 SET* Difference(SET A, SET B) {
@@ -51,4 +52,5 @@ SET* Difference(SET A, SET B) {
             (*C)[ctr] = A[ctr] && !B[ctr];
         }
     }
+    return C;
 }
