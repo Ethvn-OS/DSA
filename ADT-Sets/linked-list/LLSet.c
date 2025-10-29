@@ -52,7 +52,7 @@ int main() {
 
     printf("\n\nUnion of Set A and Set B\n");
     printSET(C);
-/*
+
     SET D = IntersectionUnsorted(A,B);
 
     printf("\n\nIntersection of Set A and Set B\n");
@@ -62,6 +62,6 @@ int main() {
 
     printf("\n\nDifference of Set A and Set B\n");
     printSET(E);
-*/
+
     return 0;
 }

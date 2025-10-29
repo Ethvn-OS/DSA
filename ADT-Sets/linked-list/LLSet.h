@@ -93,11 +93,43 @@ SET UnionUnsorted(SET A, SET B) {
 }
 
 SET IntersectionUnsorted(SET A, SET B) {
-    //insert code here
+    SET C,
+        aptr,
+        bptr;
+    SET* cptr = &C;
+    initSET(&C);
+    for (aptr = A; aptr != NULL; aptr = aptr->next) {
+        for (bptr = B; bptr != NULL && aptr->elem != bptr->elem; bptr = bptr->next) {}
+        if (bptr != NULL) { // element found
+            *cptr = (SET)malloc(sizeof(Nodetype));
+            if (*cptr != NULL) {
+                (*cptr)->elem = aptr->elem;
+                cptr = &(*cptr)->next;
+            }
+        }
+    }
+    *cptr = NULL;
+    return C;
 }
 
 SET DifferenceUnsorted(SET A, SET B) {
-    //insert code here
+    SET C,
+        aptr,
+        bptr;
+    SET* cptr = &C;
+    initSET(&C);
+    for (aptr = A; aptr != NULL; aptr = aptr->next) {
+        for (bptr = B; bptr != NULL && aptr->elem != bptr->elem; bptr = bptr->next) {}
+        if (bptr == NULL) {
+            *cptr = (SET)malloc(sizeof(Nodetype));
+            if (*cptr != NULL) {
+                (*cptr)->elem = aptr->elem;
+                cptr = &(*cptr)->next;
+            }
+        }
+    }
+    *cptr = NULL;
+    return C;
 }
 
 /*
