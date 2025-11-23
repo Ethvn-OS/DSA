@@ -23,8 +23,7 @@ typedef struct {
 */
 
 // NOTE: LEFTMOST_CHILD() and RIGHT_SIBLING() only work if there is artificial ordering of nodes
-// For this parent pointer representation of trees, assume that the tree is artificially ordered
-// This is still missing the CREATE() and MAKENULL() functions because idk how to do that
+// For this children list representation of trees, assume that the tree is artificially ordered
 
 TreeType CREATE();
 void MAKENULL(TreeType* T);

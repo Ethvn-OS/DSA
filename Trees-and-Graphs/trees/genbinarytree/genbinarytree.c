@@ -1,24 +1,26 @@
 #include <stdio.h>
-#include "childrenlist.h"
+#include "genbinarytree.h"
 
 int main() {
-    TreeType T = CREATE();
+    Tree T;
+    MAKENULL(T);
+    CREATE(T);
 
     printf("\n-- PREORDER TRAVERSAL OF NODES --\n\n");
-    printf("Expected Output: 5 0 2 8 6 1 4 7 3\n");
+    printf("Expected Output: 0 1 2 4 3\n");
     printf("Actual Output: ");
     PREORDER(ROOT(T), T);
 
     printf("\n\n-- INORDER TRAVERSAL OF NODES --\n\n");
-    printf("Expected Output: 0 5 8 2 4 1 7 6 3\n");
+    printf("Expected Output: 2 4 1 3 0\n");
     printf("Actual Output: ");
     INORDER(ROOT(T), T);
 
     printf("\n\n-- POSTORDER TRAVERSAL OF NODES --\n\n");
-    printf("Expected Output: 0 8 2 4 7 1 3 6 5\n");
+    printf("Expected Output: 4 2 3 1 0\n");
     printf("Actual Output: ");
     POSTORDER(ROOT(T), T);
-    printf("5");
+    printf("%d", ROOT(T));
 
     printf("\n\n");
 
