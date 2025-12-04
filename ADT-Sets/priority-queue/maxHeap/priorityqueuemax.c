@@ -6,9 +6,7 @@ Date Created: October 14, 2025
 */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include "priorityqueuemax.h"
-#define MAX 6
+#include "priorityqueuemax.h"        // Use either priorityqueuemax.h
 
 int main() {
     maxHeap A;
