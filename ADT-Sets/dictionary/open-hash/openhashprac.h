@@ -56,22 +56,20 @@ void initDict(Dictionary D) {
 }
 
 int hash(int elem) {
-    int temp = elem,
-        sum = 0,
+    int sum = 0,
         rem;
-
-    while (temp != 0) {
-        rem = temp % 10;
+    while (elem != 0) {
+        rem = elem % 10;
         sum += rem;
-        temp /= 10;
+        elem /= 10;
     }
-
     return sum % 19;
 }
 
 void insert(Dictionary D, int elem) {
     int hashVal = hash(elem);
-    LIST* ptr = D+hashVal;
+    LIST* ptr;
+    for (ptr = D+hashVal; *ptr != NULL; ptr = &(*ptr)->next) {}
     LIST temp = (LIST)malloc(sizeof(Nodetype));
     if (temp != NULL) {
         temp->elem = elem;
@@ -103,3 +101,59 @@ bool member(Dictionary D, int elem) {
     for (ptr = D[hashVal]; ptr != NULL && ptr->elem != elem; ptr = ptr->next) {}
     return (ptr != NULL) ? true : false;
 }
+
+// void initDict(Dictionary D) {
+//     int ctr;
+//     for (ctr = 0; ctr < MAX; ctr++) {
+//         D[ctr] = NULL;
+//     }
+// }
+
+// int hash(int elem) {
+//     int temp = elem,
+//         sum = 0,
+//         rem;
+
+//     while (temp != 0) {
+//         rem = temp % 10;
+//         sum += rem;
+//         temp /= 10;
+//     }
+
+//     return sum % 19;
+// }
+
+// void insert(Dictionary D, int elem) {
+//     int hashVal = hash(elem);
+//     LIST* ptr = D+hashVal;
+//     LIST temp = (LIST)malloc(sizeof(Nodetype));
+//     if (temp != NULL) {
+//         temp->elem = elem;
+//         temp->next = *ptr;
+//         *ptr = temp;
+//         printf("Successfully inserted element %d.\n", elem);
+//     } else {
+//         printf("Cannot insert element %d.\n", elem);
+//     }
+// }
+
+// void deleteElem(Dictionary D, int elem) {
+//     int hashVal = hash(elem);
+//     LIST* ptr;
+//     for (ptr = D+hashVal; *ptr != NULL && (*ptr)->elem != elem; ptr = &(*ptr)->next) {}
+//     if (*ptr != NULL) {
+//         LIST temp = *ptr;
+//         *ptr = temp->next;
+//         free(temp);
+//         printf("Successfully deleted element %d.\n", elem);
+//     } else {
+//         printf("Could not locate element %d.\n", elem);
+//     }
+// }
+
+// bool member(Dictionary D, int elem) {
+//     int hashVal = hash(elem);
+//     LIST ptr;
+//     for (ptr = D[hashVal]; ptr != NULL && ptr->elem != elem; ptr = ptr->next) {}
+//     return (ptr != NULL) ? true : false;
+// }

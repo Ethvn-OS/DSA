@@ -23,6 +23,7 @@ void insert(Heap* A, int elem);
 int deleteMin(Heap* A);
 void heapifyMinHeap(Heap* A);                    // This function calls the heapifySubtree() function
 void heapifySubtree(Heap* A, int subRoot);
+void heapSort(Heap* A);
 
 // Helper functions for basic operations
 int findParent(int ndx);
@@ -47,7 +48,7 @@ void insert(Heap* A, int elem)
     A->elem[++A->lastNdx] = elem;
     int ctr,
         par;
-    for (ctr = A->lastNdx, par = findParent(ctr); ctr != 0 && A->elem[par] > A->elem[ctr]; ctr = findParent(ctr)) {
+    for (ctr = A->lastNdx, par = findParent(ctr); ctr != 0 && A->elem[par] > A->elem[ctr]; ctr = findParent(ctr), par = findParent(ctr)) {
         swap(A, par, ctr);
     }
 }
@@ -90,9 +91,9 @@ void heapifySubtree(Heap* A, int subRoot)
         leftChild = subRoot*2 + 1,
         rightChild = leftChild + 1;
 
-    smallest = (curr <= A->lastNdx && A->elem[leftChild] < A->elem[curr]) ? leftChild : curr;
+    smallest = (leftChild <= A->lastNdx && A->elem[leftChild] < A->elem[curr]) ? leftChild : curr;
 
-    if (curr <= A->lastNdx && A->elem[rightChild] < A->elem[smallest]) {
+    if (rightChild <= A->lastNdx && A->elem[rightChild] < A->elem[smallest]) {
         smallest = rightChild;
     }
 
@@ -129,6 +130,18 @@ void heapifySubtree(Heap* A, int subRoot)
 //         }
 //     }
 // }
+
+void heapSort(Heap* A)
+{
+    // assume that heapify minheap is already done
+    int temp = A->lastNdx;
+    while (A->lastNdx > 0) {
+        swap(A, 0, A->lastNdx);
+        A->lastNdx--;
+        heapifySubtree(A, 0);
+    }
+    A->lastNdx = temp;
+}
 
 int findParent(int ndx)
 {

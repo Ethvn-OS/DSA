@@ -23,6 +23,7 @@ void insert(maxHeap* A, int elem);
 int deleteMax(maxHeap* A);
 void heapifyMaxHeap(maxHeap* A);                    // This function calls the heapifySubtree() function
 void heapifySubtree(maxHeap* A, int subRoot);
+void heapSort(maxHeap* A);
 
 // Helper functions for basic operations
 int findParent(int ndx);
@@ -136,6 +137,17 @@ void heapifySubtree(maxHeap* A, int subRoot)
 //         }
 //     }
 // }
+
+void heapSort(maxHeap* A)
+{
+    // assume that it is now heapified
+    int temp = A->lastNdx;
+    while (A->lastNdx > 0) {
+        swap(A, 0, A->lastNdx--);
+        heapifySubtree(A, 0);
+    }
+    A->lastNdx = temp;
+}
 
 int findParent(int ndx)
 {

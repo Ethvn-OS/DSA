@@ -45,5 +45,10 @@ int main() {
     // printf("\n\nDeleted Elem: %d\n\n", del);
     // display(H);
 
+    // Use this to check your heapsort function
+    heapSort(&H);
+    printf("After HeapSort (Descending Order): ");
+    display(H);
+
     return 0;
 }
