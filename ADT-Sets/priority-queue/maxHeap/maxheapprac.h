@@ -59,24 +59,7 @@ int deleteMax(maxHeap* A)
             curr,
             largest;
         A->elem[0] = A->elem[A->lastNdx--];
-        for (curr = 0; leftChild(curr) <= A->lastNdx && A->elem[leftChild(curr)] > A->elem[curr] || A->elem[rightChild(curr)] > A->elem[curr];) {
-            largest = curr;
-
-            if (A->elem[leftChild(curr)] > A->elem[curr]) {
-                largest = leftChild(curr);
-            } else {
-                largest = curr;
-            }
-
-            if (rightChild(curr) <= A->lastNdx && A->elem[rightChild(curr)] > A->elem[largest]) {
-                largest = rightChild(curr);
-            }
-
-            if (largest != curr) {
-                swap(A, largest, curr);
-                curr = largest;
-            }
-        }
+        heapifySubtree(A, 0);
         return front;
     } else {
         return -1;
